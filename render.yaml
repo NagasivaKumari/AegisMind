@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: aegismind
+    runtime: python
+    buildCommand: npm install --prefix frontend && npm run build --prefix frontend && pip install -r requirements.txt
+    startCommand: uvicorn backend.app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: LYZR_API_KEY
+        sync: false
+      - key: LYZR_AGENT_ID
+        sync: false
+      - key: QDRANT_URL
+        value: ""
+      - key: QDRANT_API_KEY
+        sync: false
+      - key: QDRANT_PATH
+        value: ./qdrant_data
